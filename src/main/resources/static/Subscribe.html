@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订阅消息</title>
+    <style>
+        .left-container {
+            float: left;
+            width: 350px;
+            min-height: 300px;
+            border-right: 3px solid #4b4b4b;
+        }
+        .left-container li{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .right-container{
+            padding-left: 30px;
+            float: left;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+<div class="left-container">
+    <label>订阅主题</label>
+    <input type="text" id="topic">
+    <button onclick="subscribe()">订阅</button>
+    <div>收到消息如下：</div>
+    <ul id="message"></ul>
+</div>
+<div class="right-container">
+    <div>
+        <label>消息主题</label>
+        <input type="text" id="pub_topic">
+    </div>
+    <div>
+        <label>消息内容</label>
+        <input type="text" id="pub_content">
+    </div>
+    <button onclick="publish()">发布</button>
+</div>
+
+<script>
+    function subscribe() {
+        let topic = document.getElementById('topic').value;
+        let url = location.origin + '/subscribe?topic=' + topic;
+        send(url, null, process);
+    }
+
+    //发送订阅消息
+    function send(url, data, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 3 || xhr.readyState == 4){
+                if (callback) {
+                    callback(xhr.responseText);
+                }
+            }
+        };
+        xhr.open('get', url, true);
+        xhr.send(data);
+    }
+
+    //处理订阅消息
+    function process(messsage) {
+        let li = document.createElement('li');
+        li.innerHTML = messsage;
+        let ul = document.getElementById('message');
+        ul.appendChild(li);
+    }
+
+    //发布消息
+    function publish() {
+        let topic = document.getElementById('pub_topic').value;
+        let content = document.getElementById('pub_content').value;
+        let url = location.origin + '/publish?topic=' + topic + '&content=' + content;
+        send(url, null, null);
+    }
+</script>
+</body>
+</html>
