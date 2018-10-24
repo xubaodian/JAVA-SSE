@@ -1,6 +1,6 @@
-本例以spring boot框架为基础，github地址如下：https://github.com/xubaodian/JAVA-SSE <br> 
+本例以spring boot框架为基础<br> 
 下载该实例，并启动。该实例端口号为10000。<br>
-我们先对实例进行验证测试，然后再讲解代码。<br>
+我们先对实例进行验证测试。<br>
 测试页面地址为：http://localhost:10000/subscribe.html <br>
 测试步骤如下：<br>
 1、进入http://localhost:10000/subscribe.html，页面如下图所示：<br>
@@ -11,3 +11,10 @@
 测试结果如下：<br>
 <img src="./结果页面.JPG" width="800"><br>
 订阅了财经主题新闻，右侧发布了5条新闻，3条财经新闻，一条天气新闻，一条时政新闻，订阅者收到了3条财经新闻推送信息，证明我们工程已经跑起来了，实现了http流推送的最基本功能。<br>
+
+有两个接口：<br>
+"/subscribe"接口：用于消息订阅，该接口有一个参数topic，即订阅的消息主题。<br>
+"/publish"接口：发布消息接口，有两个参数，topic是发布消息主题，content是发布消息内容。<br>
+订阅和发布消息的才做都封装在ReqContextUtils类中<br>
+前端代码在Subscribe.html。<br>
+上述代码都有注释，也没有难理解的地方，就不进行讲解了。
