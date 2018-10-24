@@ -3,7 +3,7 @@
 我们先对实例进行验证测试。<br>
 测试页面地址为：http://localhost:10000/subscribe.html <br>
 测试步骤如下：<br>
-1、进入http://localhost:10000/subscribe.html，页面如下图所示：<br>
+1、进入http://localhost:10000/subscribe.html ，页面如下图所示：<br>
 <img src="./测试初始页面.JPG" width="800"><br>
 左侧是订阅消息的操作和展示页面，右侧是发布内容的页面。
 2、左侧输入订阅消息主题，点击订阅，订阅相关主题消息，例如：输入财经新闻主题FinancialNews，点击订阅，这样就订阅了财经新闻了。
