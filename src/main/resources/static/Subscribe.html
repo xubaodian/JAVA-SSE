@@ -40,6 +40,8 @@
         <input type="text" id="pub_content">
     </div>
     <button onclick="publish()">发布</button>
+    <div>发布消息和内容如下：</div>
+    <ul id="pub_message"></ul>
 </div>
 
 <script>
@@ -63,10 +65,12 @@
         xhr.send(data);
     }
 
+    let len = 0;
     //处理订阅消息
     function process(messsage) {
         let li = document.createElement('li');
-        li.innerHTML = messsage;
+        li.innerHTML = messsage.substr(len);
+        len = messsage.length;
         let ul = document.getElementById('message');
         ul.appendChild(li);
     }
@@ -77,6 +81,10 @@
         let content = document.getElementById('pub_content').value;
         let url = location.origin + '/publish?topic=' + topic + '&content=' + content;
         send(url, null, null);
+        let li = document.createElement('li');
+        li.innerHTML = `发布主题：${topic}； 发布内容：${content}`;
+        let ul = document.getElementById('pub_message');
+        ul.appendChild(li);
     }
 </script>
 </body>
